@@ -9,7 +9,6 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* fio vermelho de destaque */
 .header::after {
   content: "";
   position: absolute;
@@ -49,11 +48,6 @@
   height: 50px;
   flex-shrink: 0;
   object-fit: contain;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 2px rgba(255, 255, 255, 0.12),
-    0 6px 16px -4px rgba(225, 29, 46, 0.55);
 }
 
 .header-texto {
