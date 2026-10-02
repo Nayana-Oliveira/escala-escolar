@@ -1,6 +1,6 @@
+
 import { NavLink } from "react-router-dom";
 import "./index.css";
-import logo from '../../../public/logo.png'
 
 function Header() {
   return (
@@ -8,7 +8,7 @@ function Header() {
       <div className="header-container">
         <div className="header-identidade">
           <img
-            src="../../../public/logo.png"
+            src="/logo.png"
             alt="Logo da Escola Estadual Eusébio de Paula Marcondes"
             className="header-logo"
           />
