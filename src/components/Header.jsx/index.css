@@ -1,0 +1,144 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: rgba(10, 10, 11, 0.88);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* fio vermelho de destaque */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--red-500) 0%,
+    var(--red-600) 28%,
+    rgba(200, 16, 46, 0) 70%
+  );
+  pointer-events: none;
+}
+
+.header-container {
+  max-width: 1280px;
+  min-height: 76px;
+  margin: 0 auto;
+  padding: 12px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-identidade {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.header-logo {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.12),
+    0 6px 16px -4px rgba(225, 29, 46, 0.55);
+}
+
+.header-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.header-texto span {
+  color: #ff4d5e;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.header-texto h1 {
+  color: #ffffff;
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.header-nav a {
+  position: relative;
+  padding: 9px 18px;
+  border-radius: 999px;
+  color: #b4b4bd;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.header-nav a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.header-nav a.active {
+  color: #ffffff;
+  background: var(--red-600);
+  box-shadow: var(--shadow-red);
+}
+
+@media (max-width: 650px) {
+  .header-container {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .header-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .header-texto h1 {
+    font-size: 14.5px;
+  }
+
+  .header-nav {
+    width: 100%;
+  }
+
+  .header-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 9px 12px;
+  }
+}

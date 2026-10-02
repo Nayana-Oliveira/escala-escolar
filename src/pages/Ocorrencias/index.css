@@ -1,0 +1,467 @@
+/* ==========================================================
+   MINHAS OCORRÊNCIAS
+   ========================================================== */
+
+.ocorrencias-container {
+  position: relative;
+  min-height: calc(100vh - 76px);
+  background: var(--bg);
+  padding: 52px 24px 72px;
+  overflow: hidden;
+}
+
+/* faixa escura decorativa no topo */
+.ocorrencias-container::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 290px;
+  background: var(--hero-bg);
+  pointer-events: none;
+}
+
+.ocorrencias-content {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ---------- INTRO (sobre a faixa escura) ---------- */
+
+.ocorrencias-intro {
+  margin-bottom: 30px;
+}
+
+.ocorrencias-label {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 77, 94, 0.45);
+  background: rgba(225, 29, 46, 0.16);
+  color: #ff6b79;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.ocorrencias-intro h1 {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin: 16px 0 10px;
+}
+
+.ocorrencias-intro p {
+  color: #b9b9c2;
+  font-size: 15.5px;
+  margin: 0;
+}
+
+/* ---------- FORMULÁRIO ---------- */
+
+.ocorrencias-form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  box-shadow: var(--shadow-lg);
+}
+
+.ocorrencias-form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ocorrencias-form-group label {
+  color: var(--ink-800);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.ocorrencias-form-group input {
+  width: 100%;
+  height: 50px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0 16px;
+  font-size: 15px;
+  color: var(--ink-900);
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+  background: #fafafb;
+}
+
+.ocorrencias-form-group input:hover {
+  border-color: var(--line-strong);
+}
+
+.ocorrencias-form-group input:focus {
+  border-color: var(--red-600);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(225, 29, 46, 0.12);
+}
+
+.ocorrencias-form-group input::placeholder {
+  color: var(--ink-400);
+}
+
+.ocorrencias-form button[type="submit"] {
+  height: 50px;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0 26px;
+  background: linear-gradient(135deg, var(--red-500), var(--red-700));
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: var(--shadow-red);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    filter 0.2s;
+  white-space: nowrap;
+}
+
+.ocorrencias-form button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 14px 26px -8px rgba(225, 29, 46, 0.65);
+}
+
+.ocorrencias-form button[type="submit"]:active:not(:disabled) {
+  transform: translateY(0) scale(0.99);
+}
+
+.ocorrencias-form button:disabled {
+  opacity: 0.65;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ---------- MENSAGENS ---------- */
+
+.ocorrencias-mensagem {
+  margin-top: 20px;
+  padding: 15px 18px;
+  border-radius: var(--radius-md);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.ocorrencias-mensagem.erro {
+  color: var(--red-700);
+  background: var(--red-50);
+  border: 1px solid #f4c3c9;
+  border-left: 4px solid var(--red-600);
+}
+
+/* ---------- RESULTADOS ---------- */
+
+.ocorrencias-resultados {
+  margin-top: 40px;
+  animation: aparecer-ocorrencias 0.3s ease;
+}
+
+@keyframes aparecer-ocorrencias {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ocorrencias-resultados-header {
+  margin-bottom: 18px;
+}
+
+.ocorrencias-resultados-header h2 {
+  color: var(--ink-900);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
+}
+
+.ocorrencias-resultados-header p {
+  color: var(--ink-500);
+  font-size: 14.5px;
+  margin: 0;
+}
+
+/* ---------- FILTROS ---------- */
+
+.ocorrencias-filtros {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ocorrencias-filtros-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ocorrencias-filtros-titulo h3 {
+  color: var(--ink-900);
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.ocorrencias-filtros-titulo p {
+  color: var(--ink-500);
+  font-size: 13.5px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.limpar-filtros {
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink-600);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.limpar-filtros:hover:not(:disabled) {
+  background: var(--red-50);
+  border-color: var(--red-600);
+  color: var(--red-700);
+}
+
+.limpar-filtros:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ocorrencias-filtros-campos {
+  display: flex;
+  gap: 16px;
+}
+
+.filtro-erro {
+  color: var(--red-700);
+  font-size: 13px;
+  font-weight: 500;
+  margin: 14px 0 0;
+}
+
+.ocorrencias-contagem {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--black);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+/* ---------- LISTA DE OCORRÊNCIAS ---------- */
+
+.ocorrencias-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ocorrencia-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 22px 24px 22px 28px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.ocorrencia-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--red-500), var(--red-700));
+}
+
+.ocorrencia-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--line-strong);
+}
+
+.ocorrencia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ocorrencia-data {
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: var(--black);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ocorrencia-horario {
+  color: var(--ink-500);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ocorrencia-conteudo {
+  padding: 16px 0;
+}
+
+.ocorrencia-conteudo h3,
+.ocorrencia-atividade h3 {
+  color: var(--red-600);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.ocorrencia-conteudo p {
+  color: var(--ink-600);
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.ocorrencia-atividade {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--ink-600);
+  background: #f7f7f9;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 13.5px;
+}
+
+.ocorrencia-atividade h3 {
+  margin: 0;
+}
+
+.ocorrencia-atividade p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.ocorrencia-atividade span {
+  color: var(--ink-500);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.ocorrencias-vazio {
+  background: var(--surface);
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  padding: 44px 20px;
+  text-align: center;
+}
+
+.ocorrencias-vazio h3 {
+  color: var(--ink-900);
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.ocorrencias-vazio p {
+  color: var(--ink-500);
+  font-size: 14.5px;
+  margin: 0;
+}
+
+/* ---------- RESPONSIVO ---------- */
+
+@media (max-width: 650px) {
+  .ocorrencias-container {
+    padding: 36px 16px 52px;
+  }
+
+  .ocorrencias-intro h1 {
+    font-size: 28px;
+  }
+
+  .ocorrencias-form {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  .ocorrencias-form button[type="submit"] {
+    width: 100%;
+  }
+
+  .ocorrencias-filtros {
+    padding: 18px;
+  }
+
+  .ocorrencias-filtros-titulo {
+    flex-direction: column;
+  }
+
+  .ocorrencias-filtros-campos {
+    flex-direction: column;
+  }
+
+  .limpar-filtros {
+    width: 100%;
+  }
+
+  .ocorrencia-card {
+    padding: 18px 16px 18px 22px;
+  }
+
+  .ocorrencia-card:hover {
+    transform: none;
+  }
+}
