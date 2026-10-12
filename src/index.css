@@ -1,6 +1,3 @@
-/* ==========================================================
-   TOKENS DE DESIGN — vermelho, preto e branco
-   ========================================================== */
 :root {
   --red-500: #e11d2e;
   --red-600: #c8102e;
@@ -32,7 +29,6 @@
   --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     sans-serif;
 
-  /* faixa escura no topo das páginas */
   --hero-height: 280px;
   --hero-bg:
     radial-gradient(

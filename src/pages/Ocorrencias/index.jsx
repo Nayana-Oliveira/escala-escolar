@@ -33,7 +33,6 @@ function CartaoOcorrencia({ ocorrencia }) {
       {atividade && (
         <div className="ocorrencia-atividade">
           <h3>Atividade relacionada</h3>
-
           <p>{atividade.descricao || "Sem descrição da atividade."}</p>
 
           {atividade.inicio && atividade.fim && (
@@ -67,8 +66,8 @@ export default function Ocorrencias() {
       return;
     }
 
-    if (!/^\d{6}$/.test(codigo)) {
-      setErro("Digite seu código de acesso de 6 dígitos.");
+    if (!/^\d{3}$/.test(codigo)) {
+      setErro("Digite os três primeiros dígitos do seu CPF.");
       setOcorrencias([]);
       setConsultou(false);
       return;
@@ -92,7 +91,7 @@ export default function Ocorrencias() {
       const lista = Array.isArray(dados) ? dados : dados?.ocorrencias;
 
       if (!Array.isArray(lista)) {
-        throw new Error("Resposta inesperada do servidor.");
+        throw new Error(dados?.mensagem || "Resposta inesperada do servidor.");
       }
 
       setOcorrencias(lista);
@@ -105,7 +104,9 @@ export default function Ocorrencias() {
     }
   }
 
-  const periodoInvalido = dataInicial && dataFinal && dataInicial > dataFinal;
+  const periodoInvalido = Boolean(
+    dataInicial && dataFinal && dataInicial > dataFinal,
+  );
 
   const ocorrenciasFiltradas = ocorrencias.filter((ocorrencia) => {
     if (!ocorrencia.data || periodoInvalido) {
@@ -159,15 +160,15 @@ export default function Ocorrencias() {
 
             <input
               id="codigo"
-              type="password"
+              type="text"
               inputMode="numeric"
-              pattern="[0-9]{6}"
-              maxLength={6}
+              pattern="[0-9]{3}"
+              maxLength={3}
               value={codigo}
               onChange={(event) =>
-                setCodigo(event.target.value.replace(/\D/g, ""))
+                setCodigo(event.target.value.replace(/\D/g, "").slice(0, 3))
               }
-              placeholder="Digite seu código de 6 dígitos"
+              placeholder="3 primeiros dígitos do CPF"
               autoComplete="off"
               required
             />

@@ -1,40 +1,61 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL?.trim();
 
-export async function consultarEscala(nome, dia) {
+function validarAPI() {
   if (!API_URL) {
     throw new Error("A URL da API não foi configurada.");
   }
+}
+
+async function lerResposta(response) {
+  const texto = await response.text();
+
+  let dados;
 
   try {
-    const url = `${API_URL}?acao=consulta&nome=${encodeURIComponent(nome)}&dia=${encodeURIComponent(dia)}`;
+    dados = JSON.parse(texto);
+  } catch {
+    throw new Error(
+      "O Apps Script não retornou um JSON válido. Verifique a implantação da API.",
+    );
+  }
 
-    const response = await fetch(url);
-    const texto = await response.text();
+  if (!response.ok) {
+    throw new Error(
+      dados.mensagem || dados.message || `Erro HTTP ${response.status}.`,
+    );
+  }
 
-    let dados;
+  return dados;
+}
 
-    try {
-      dados = JSON.parse(texto);
-    } catch {
-      throw new Error("O Apps Script não retornou um JSON válido: " + texto);
-    }
+export async function consultarEscala(nome, dia) {
+  validarAPI();
 
-    if (!response.ok) {
-      throw new Error(
-        dados.mensagem || `Erro HTTP ${response.status}`
-      );
+  try {
+    const url = new URL(API_URL);
+    url.searchParams.set("acao", "consulta");
+    url.searchParams.set("nome", nome);
+    url.searchParams.set("dia", dia);
+
+    const response = await fetch(url.toString());
+    const dados = await lerResposta(response);
+
+    if (dados.sucesso === false) {
+      throw new Error(dados.mensagem || "Não foi possível consultar a escala.");
     }
 
     return dados;
   } catch (error) {
-    console.error("Erro na consulta:", error);
+    console.error("Erro na consulta da escala:", error);
     throw error;
   }
 }
 
 export async function consultarOcorrencias(nome, codigo) {
-  if (!API_URL) {
-    throw new Error("A URL da API não foi configurada.");
+  validarAPI();
+
+  if (!/^\d{3}$/.test(String(codigo))) {
+    throw new Error("Digite os três primeiros dígitos do seu CPF.");
   }
 
   const resposta = await fetch(API_URL, {
@@ -44,14 +65,10 @@ export async function consultarOcorrencias(nome, codigo) {
     },
     body: JSON.stringify({
       acao: "ocorrencias",
-      nome,
-      codigo,
+      nome: nome.trim(),
+      codigo: String(codigo),
     }),
   });
 
-  if (!resposta.ok) {
-    throw new Error("Erro ao consultar ocorrências.");
-  }
-
-  return resposta.json();
+  return lerResposta(resposta);
 }
